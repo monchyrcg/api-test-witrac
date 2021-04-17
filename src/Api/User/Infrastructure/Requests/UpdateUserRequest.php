@@ -2,7 +2,6 @@
 declare(strict_types=1);
 
 namespace Src\Api\User\Infrastructure\Requests;
-
 use Illuminate\Foundation\Http\FormRequest;
 
 final class UpdateUserRequest extends FormRequest

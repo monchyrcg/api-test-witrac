@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Src\Api\User\Application;
 
-
 use Src\Api\User\Domain\Contract\UserRepositoryContract;
 use Src\Api\User\Domain\User;
 use Src\Api\User\Domain\ValueObjects\UserEmail;

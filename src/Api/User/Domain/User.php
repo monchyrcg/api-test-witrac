@@ -44,7 +44,7 @@ final class User implements Domain
         UserEmail $email
     ): User
     {
-       return new self($name, $email);
+        return new self($name, $email);
     }
 
     public function toArray(): array
