@@ -3,16 +3,18 @@ declare(strict_types=1);
 
 namespace Src\Api\Asset\Application;
 
-use Src\Api\Asset\Domain\Contract\AssetRepositoryContract;
-use Src\Api\User\Domain\ValueObjects\UserId;
 
-final class ListAssetUseCase
+use Src\Api\Asset\Domain\Asset;
+use Src\Api\Asset\Domain\Contract\AssetRepositoryContract;
+use Src\Api\Asset\Domain\ValueObjects\AssetId;
+
+class FindAssetByIdUseCase
 {
     public function __construct(private AssetRepositoryContract $repositoryContract)
     {}
 
-    public function __invoke(string $search_text = null): array
+    public function __invoke(int $asset_id): Asset
     {
-        return $this->repositoryContract->getAssets($search_text);
+        return $this->repositoryContract->findById(new AssetId($asset_id));
     }
 }

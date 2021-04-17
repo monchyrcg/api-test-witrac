@@ -8,10 +8,11 @@ use App\Models\Asset as EloquentAssetModel;
 use Src\Api\Asset\Domain\Asset;
 use Src\Api\Asset\Domain\Contract\AssetRepositoryContract;
 use Src\Api\Asset\Domain\ValueObjects\AssetFormat;
+use Src\Api\Asset\Domain\ValueObjects\AssetId;
 use Src\Api\Asset\Domain\ValueObjects\AssetName;
 use Src\Api\Asset\Domain\ValueObjects\AssetSize;
 use Src\Api\Asset\Domain\ValueObjects\AssetUrl;
-use Src\Api\User\Domain\ValueObjects\UserId;
+
 
 final class EloquentAssetRepository implements AssetRepositoryContract
 {
@@ -30,6 +31,7 @@ final class EloquentAssetRepository implements AssetRepositoryContract
         foreach ($assets as $asset) {
             array_push($arrayModels,
                 [
+                    'id' => $asset->id,
                     'name' => $asset->name,
                     'size' => $asset->size,
                     'extension' => $asset->extension,
@@ -38,5 +40,21 @@ final class EloquentAssetRepository implements AssetRepositoryContract
             );
         }
         return $arrayModels;
+    }
+
+    public function findById(AssetId $assetId): Asset
+    {
+        $model = $this->eloquentAssetModel->findOrFail($assetId->value());
+
+        $asset = Asset::create(
+            new AssetName($model->name),
+            new AssetSize((float) $model->size),
+            new AssetFormat($model->extension),
+            new AssetUrl ($model->url)
+        );
+
+        $asset->setId($model->id);
+
+        return $asset;
     }
 }

@@ -11,6 +11,7 @@ use Src\Shared\Infrastructure\Controller;
 
 final class UpdateUserController extends Controller
 {
+
     public function __construct(private EloquentUserRepository $userRepository)
     {
     }

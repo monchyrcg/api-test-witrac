@@ -1,9 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Src\Api\User\Domain\ValueObjects;
+namespace Src\Api\Asset\Domain\ValueObjects;
 
-final class UserId
+
+final class AssetId
 {
     public function __construct(private int $id)
     {

@@ -11,7 +11,7 @@ final class AssetUrl
 
     }
 
-    public function url(): string
+    public function value(): string
     {
         return $this->url;
     }

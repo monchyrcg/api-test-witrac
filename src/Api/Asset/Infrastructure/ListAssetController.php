@@ -3,9 +3,8 @@ declare(strict_types=1);
 
 namespace Src\Api\Asset\Infrastructure;
 
-
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Src\Api\Asset\Application\ListAssetUseCase;
 use Src\Api\Asset\Infrastructure\Repositories\EloquentAssetRepository;
 use Src\Shared\Infrastructure\Controller;
@@ -16,7 +15,7 @@ final class ListAssetController extends Controller
     {
     }
 
-    public function __invoke(Request $request): \Illuminate\Pagination\LengthAwarePaginator
+    public function __invoke(Request $request): LengthAwarePaginator
     {
         $listAssetUseCase =  new ListAssetUseCase($this->repository);
 
