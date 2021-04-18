@@ -13,6 +13,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        \App\Models\User::factory([
+            'name'  => 'Test Witrac',
+            'email' => 'test@witrac.com'
+        ])->create();
+
          \App\Models\User::factory(10)->create();
 
         \App\Models\Asset::factory(200)->create();
