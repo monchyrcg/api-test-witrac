@@ -23,6 +23,7 @@ final class LoginUserUseCase
             new UserPassword($password)
         );
 
+
         return $this->repository->login($login);
     }
 }

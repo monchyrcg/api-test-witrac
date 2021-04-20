@@ -45,7 +45,7 @@ class EloquentUserRepository implements UserRepositoryContract
         if (!$isLogging || ! Hash::check($login->password()->value(), $isLogging->password)) {
             return null;
         } else {
-            return $isLogging->createToken(request('email'))->plainTextToken;
+            return $isLogging->createToken($login->email()->value())->plainTextToken;
         }
     }
 
